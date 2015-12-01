@@ -1,0 +1,13 @@
+env
+.ropeproject
+*.pyc
+__pycache__
+.sass-cache
+.directory
+CACHE
+migrations
+static_root
+media
+filemanager
+tinymce
+*~
