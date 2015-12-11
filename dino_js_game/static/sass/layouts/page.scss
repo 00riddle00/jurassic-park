@@ -1,0 +1,74 @@
+body {
+    margin: 0 auto;
+}
+
+#counter {
+    top: 10px;
+    left: 10px;
+    position: fixed;
+}
+
+    #title {
+    float: left;
+    color: yellow;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+#number {
+    color: orange;
+    font-weight: bold;
+    float: right;
+    padding-left: 10px;
+}
+
+.coin {
+    border-radius: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: yellow;
+    position: fixed;
+}
+
+.c1 {
+    top: 90px;
+    left: 800px;
+}
+
+.c2 {
+    top: 270px;
+    left: 200px;
+}
+
+.c3 {
+    top: 300px;
+    left: 1100px;
+}
+
+#map {
+    width: 1920px;
+    height: 1080px;
+    background-color: blue;
+    position: fixed;
+}
+
+#dino {
+    background-image: url('/static/img/r_run_1.png');
+    height: 200px;
+    width: 200px;
+    background-repeat: no-repeat;
+    margin-top: 50px;
+    margin-left: 10px;
+}
+
+#dino2 {
+    background-image: url('/static/img/triceratops.png');
+    height: 200px;
+    width: 200px;
+    background-repeat: no-repeat;
+    top: 300px;
+    left: 500px;
+    position: fixed;
+}
+
+

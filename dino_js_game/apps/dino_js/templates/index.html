@@ -2,85 +2,14 @@
 <html>
 <head>
 
-    <style type="text/css">
+    {% load staticfiles %}
 
-        body {
-            margin: 0 auto;
-        }
+    {% load compress %}
+    {% compress css %}
+        <link media="all" type="text/x-scss" rel="stylesheet" href="/static/sass/master.scss"/>
+    {% endcompress %}
 
-        #counter {
-            top: 10px;
-            left: 10px;
-            position: fixed;
-        }
 
-            #title {
-            float: left;
-            color: yellow;
-            font-family: Arial;
-            font-weight: bold;
-        }
-
-        #number {
-            color: orange;
-            font-weight: bold;
-            float: right;
-            padding-left: 10px;
-        }
-
-        .coin {
-            border-radius: 10px;
-            width: 15px;
-            height: 15px;
-            background-color: yellow;
-            position: fixed;
-        }
-
-        .c1 {
-            top: 90px;
-            left: 800px;
-        }
-
-        .c2 {
-            top: 270px;
-            left: 200px;
-        }
-
-        .c3 {
-            top: 300px;
-            left: 1100px;
-        }
-
-        #map {
-            width: 1920px;
-            height: 1080px;
-            background-color: blue;
-            position: fixed;
-        }
-
-        #dino {
-            background-image: url('/static/img/r_run_1.png');
-            height: 200px;
-            width: 200px;
-            background-repeat: no-repeat;
-            margin-top: 50px;
-            margin-left: 10px;
-
-        }
-
-<<<<<<< HEAD
-=======
-        #dino2 {
-            background-image: url('/static/img/triceratops.png');
-            height: 200px;
-            width: 200px;
-            background-repeat: no-repeat;
-            margin-top: 300px;
-            margin-left: 500px;
-        }
-
->>>>>>> dev
-</style>
 </head>
 
 <body>
@@ -94,93 +23,11 @@
         <div class="coin c1"></div>
         <div class="coin c2"></div>
         <div class="coin c3"></div>
-<<<<<<< HEAD
-=======
         <div id="dino2"></div>
->>>>>>> dev
     </div>
 
     <script src="/static/js/jquery.js" %}"></script>
-
-    <script type="text/javascript">
-
-        var gold_counter = 0;
-        var l_pos = 0; // leg_position
-        var r_dir = 'right' // run_direction
-
-        var change_legs_right = function () {
-            if ( l_pos % 3 == 0 ) {
-                $('#dino').css("background-image", "url('/static/img/r_run_1.png')")
-            } else if ( l_pos % 2 == 0 ) {
-                $('#dino').css("background-image", "url('/static/img/r_stand.png')")
-            } else {
-                $('#dino').css("background-image", "url('/static/img/r_run_2.png')")
-            }
-            return l_pos = l_pos + 1
-        };
-
-        var change_legs_left = function () {
-            if ( l_pos % 3 == 0 ) {
-                $('#dino').css("background-image", "url('/static/img/l_run_2.png')")
-            } else if ( l_pos % 2 == 0 ) {
-                $('#dino').css("background-image", "url('/static/img/l_stand.png')")
-            } else {
-                $('#dino').css("background-image", "url('/static/img/l_run_2.png')")
-            }
-            return l_pos = l_pos + 1
-        };
-
-        var change_legs_up = function () {
-            if ( l_pos % 3 == 0 ) {
-                $('#dino').css("background-image", "url('/static/img/u_run_01.png')")
-            } else if ( l_pos % 2 == 0 ) {
-                $('#dino').css("background-image", "url('/static/img/u_run_02.png')")
-            } else {
-                $('#dino').css("background-image", "url('/static/img/u_run_03.png')")
-            }
-            return l_pos = l_pos + 1
-        };
-
-        var change_legs_down = function () {
-            if ( l_pos % 3 == 0 ) {
-                $('#dino').css("background-image", "url('/static/img/d_run_01.png')")
-            } else if ( l_pos % 2 == 0 ) {
-                $('#dino').css("background-image", "url('/static/img/d_run_02.png')")
-            } else {
-                $('#dino').css("background-image", "url('/static/img/d_run_03.png')")
-            }
-            return l_pos = l_pos + 1
-        };
-
-
-        $(document).keydown(function(e) {      
-            // e.preventDefault();
-            switch(e.which) {
-                case 37: // left
-                    $('#dino').css({marginLeft: '-=15px'});
-                    change_legs_left()
-                    break;
-
-                case 38: // up
-                    $('#dino').css({marginTop: '-=15px'});
-                    change_legs_up()
-                    break;
-
-                case 39: // right
-                    $('#dino').css({marginLeft: '+=15px'});
-                    change_legs_right()
-                    break;
-
-                case 40: // down
-                    $('#dino').css({marginTop: '+=15px'});
-                    change_legs_down()
-                    break;
-
-                default: return;
-            }
-        });
-
-    </script>
+    <script src="/static/js/main.js" %}"></script>
 
 </body>
 </html>
