@@ -54,8 +54,8 @@ body {
 
 #dino {
     background-image: url('/static/img/r_run_1.png');
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 105px;
     background-repeat: no-repeat;
     margin-top: 50px;
     margin-left: 10px;
@@ -63,12 +63,37 @@ body {
 
 #dino2 {
     background-image: url('/static/img/triceratops.png');
-    height: 200px;
-    width: 200px;
+    height: 65px;
+    width: 125px;
     background-repeat: no-repeat;
     top: 300px;
     left: 500px;
     position: fixed;
+}
+
+#greeting {
+    display: none;
+    top: 226px;
+    left: 534px;
+    width: 100px;
+    height: 50px;
+    position: fixed;
+    background-color: white;
+    border-radius: 17px;
+    text-align: center;
+    line-height: 50px;
+    color: green;
+}
+
+#balloon {
+    display: none;
+    border-radius: 10px;
+    width: 12px;
+    height: 13px;
+    background-color: white;
+    position: fixed;
+    top: 284px;
+    left: 523px;
 }
 
 
