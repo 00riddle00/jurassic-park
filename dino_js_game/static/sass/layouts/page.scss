@@ -45,10 +45,21 @@ body {
     left: 1100px;
 }
 
+.c4 {
+    top: 600px;
+    left: 1200px;
+}
+
+.c5 {
+    top: 650px;
+    left: 400px;
+}
+
 #map {
     width: 1920px;
     height: 1080px;
     background-color: blue;
+    background-image: url('/static/img/grass.png');
     position: fixed;
 }
 
