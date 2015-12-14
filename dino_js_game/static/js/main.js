@@ -8,12 +8,11 @@ jQuery.noConflict();
   var s_hello = new Audio('static/audio/hello.mp3')
 
   var dino = $('#dino');
-
-  // triceratops
   var dino2 = $('#dino2');
 
   var gold_counter = 0;
-
+  var collides = 0;
+  
   function collision($div1, $div2) {
       var x1 = $div1.offset().left;
       var y1 = $div1.offset().top;
@@ -45,6 +44,8 @@ jQuery.noConflict();
         }, 100);
 	$('#balloon').show();
 	$('#greeting').show();
+        collides = 1
+        console.log('You lost');
       }
   }
 
@@ -75,11 +76,6 @@ jQuery.noConflict();
         $('#number').html(gold_counter + '/5');
       }
   }
-
-
-
-
-
 
 
         var l_pos = 0; // leg_position
@@ -175,31 +171,57 @@ jQuery.noConflict();
 
 
         $(document).ready(function() {
-
+	    animateDiv();
             s_jungle.play()
-
-            setTimeout(function() {
-                $('#dino2').css({marginLeft: '-=15px'});
-            }, 3000);
-
-            setTimeout(function() {
-                $('#dino2').css({marginLeft: '-=15px'});
-            }, 3000);
-            setTimeout(function() {
-                $('#dino2').css({marginLeft: '-=15px'});
-            }, 3000);
-            setTimeout(function() {
-                $('#dino2').css({marginLeft: '-=15px'});
-            }, 3000);
-            setTimeout(function() {
-                $('#dino2').css({marginLeft: '-=15px'});
-            }, 3000);
         });
 
 
+function goLeft(){
+    
+    // Get viewport dimensions (remove the dimension of the div)
+    var h = $('#dino2').offset().top - 50;
+    var w = $('#dino2').offset().left - 50;
+    
+    return [h,w];    
+}
 
+function goRight(){
+    
+    // Get viewport dimensions (remove the dimension of the div)
+    var h = $('#dino2').offset().top - 50;
+    var w = $('#dino2').offset().left + 50;
+    
+    return [h,w];    
+}
 
+function animateDiv(){
+    var left = goLeft();
+    var right = goRight();
+    var oldq = $('#dino2').offset();
+    var speed = calcSpeed([oldq.top, oldq.left], left);
+    
+    $('#dino2').animate({ left: left[1] }, speed, function(){
+      animateDiv();        
+      collision(dino, dino2);
+      if (collides == 1) {
+          $('#dino2').stop();
+      }
+    });
+};
 
+function calcSpeed(prev, next) {
+    
+    var x = Math.abs(prev[1] - next[1]);
+    var y = Math.abs(prev[0] - next[0]);
+    
+    var greatest = x > y ? x : y;
+    
+    var speedModifier = 0.1;
+
+    var speed = Math.ceil(greatest/speedModifier);
+
+    return speed;
+
+}
 
 }(jQuery));
-
