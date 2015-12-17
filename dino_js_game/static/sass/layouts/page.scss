@@ -2,20 +2,20 @@ body {
     margin: 0 auto;
 }
 
-#counter {
+#gold-counter {
     top: 10px;
     left: 10px;
     position: fixed;
 }
 
-    #title {
+#gold-counter #title {
     float: left;
     color: yellow;
     font-family: Arial;
     font-weight: bold;
 }
 
-#number {
+#gold-counter #number {
     color: orange;
     font-weight: bold;
     float: right;
@@ -63,7 +63,7 @@ body {
     position: fixed;
 }
 
-#dino {
+#player {
     background-image: url('/static/img/r_run_1.png');
     height: 150px;
     width: 105px;
@@ -72,23 +72,29 @@ body {
     margin-left: 10px;
 }
 
-#dino2 {
-    background-image: url('/static/img/triceratops.png');
-    height: 65px;
-    width: 125px;
+.npc {
     background-repeat: no-repeat;
-    top: 300px;
-    left: 500px;
     position: fixed;
 }
 
-#greeting {
+.npc #tric {
+    background-image: url('/static/img/triceratops.png');
+    height: 65px;
+    width: 125px;
+    background-repeat: inherit;
+    position: inherit;
+    top: 300px;
+    left: 500px;
+}
+
+.npc #tric-greeting {
     display: none;
     top: 226px;
     left: 534px;
     width: 100px;
     height: 50px;
-    position: fixed;
+    background-repeat: inherit;
+    position: inherit;
     background-color: white;
     border-radius: 17px;
     text-align: center;
@@ -96,8 +102,8 @@ body {
     color: green;
 }
 
-#balloon {
-    display: none;
+.balloon {
+    display: inherit;
     border-radius: 10px;
     width: 12px;
     height: 13px;
@@ -106,5 +112,3 @@ body {
     top: 284px;
     left: 523px;
 }
-
-
