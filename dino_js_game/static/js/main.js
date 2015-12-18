@@ -32,7 +32,7 @@ jQuery.noConflict();
 	    $('#tric-greeting').hide();
             sound_hello.pause();
             sound_hello.currentTime = 0;
-            $('#tric').css("background-image", "url('/static/img/triceratops.png')");
+            $('#tric').css("background-image", "url('/static/img/triceratops_left.png')");
         } else {
             $('#tric').css("background-image", "url('/static/img/triceratops_hello.png')");
             setTimeout(function(){
@@ -184,22 +184,41 @@ jQuery.noConflict();
         var oldq = $('#tric').offset();
         var speed = calcSpeed([oldq.top, oldq.left], left);
         
-        for (var i = 8; i > 0; i--) {
-            $('#tric').animate({ left: left[1] }, speed, function(){
-            });
-        };
+        $('#tric').animate({ left: left[1] }, speed, function() {
+            if ( $('#tric').offset().left > 0 ) {
+                animateDiv();
+            } else {
+                $('#tric').({ left: left[1] }, speed, function() {
+                    $('#tric').css("background-image", "url('/static/img/triceratops_right.png')");
+                    animateRight();
+                });
+            };
+        });
+    };
 
+    function animateRight(){
+        var left = goLeft();
+        var right = goRight();
+        var oldq = $('#tric').offset();
+        var speed = calcSpeed([oldq.top, oldq.left], left);
+        
+        $('#tric').animate({ left: right[1] }, speed, function() {
+            // change hardcoded offset.left
+            if ( $('#tric').offset().left < 1800 ) {
+                animateRight();
+            } else {
+                $('#tric').css("background-image", "url('/static/img/triceratops_left.png')");
+                animateDiv();
+            };
+        });
     };
 
 
-/*
-    while ( $('#tric').offset().right > 0 ) {
-        $('#tric').animate({ left: right[1] }, speed, function(){
-        });
-    }
-    animateDiv();
-};
 
+
+
+
+/*
     dino_collision(player, tric);
     if (collides == 1) {
         $('#tric').stop();
@@ -213,7 +232,7 @@ jQuery.noConflict();
     
         var greatest = x > y ? x : y;
     
-        var speedModifier = 0.1;
+        var speedModifier = 0.25;
 
         var speed = Math.ceil(greatest/speedModifier);
 
