@@ -3,16 +3,21 @@ jQuery.noConflict();
 
 (function ($) {
     
+    // variables definition
+        // sound variables
     var sound_coin = new Audio('static/audio/coin.mp3')
     var sound_jungle = new Audio('static/audio/jungle.mp3')
-    var sound_hello = new Audio('static/audio/hello.mp3')
+    var sound_defeat = new Audio('static/audio/dino_defeat.mp3')
+    var sound_victory = new Audio('static/audio/victory.mp3')
 
+        // other variables
     var player = $('#player');
     var tric = $('#tric');
 
     var gold_counter = 0;
     var collides = 0;
-  
+
+    //dino collision function
     function dino_collision($div1, $div2) {
         var x1 = $div1.offset().left;
         var y1 = $div1.offset().top;
@@ -28,22 +33,20 @@ jQuery.noConflict();
         var r2 = x2 + w2;
 
         if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) {
-            $('#balloon').hide();
-	    $('#tric-greeting').hide();
-            sound_hello.pause();
-            sound_hello.currentTime = 0;
-            $('#tric').css("background-image", "url('/static/img/triceratops_left.png')");
+            sound_defeat.pause();
+            sound_defeat.currentTime = 0;
+            // $('#tric').css("background-image", "url('/static/img/triceratops_left.png')");
         } else {
-            $('#tric').css("background-image", "url('/static/img/triceratops_hello.png')");
             setTimeout(function(){
-                sound_hello.play();
+                sound_defeat.play();
             }, 100);
-	    $('#balloon').show();
-	    $('#tric-greeting').show();
+	    $('.game-over').show();
             collides = 1
+            $('#tric').stop();
         }
     }
 
+    // coin collision f-ion
     function coin_collision($div1, $div2) {
         var x1 = $div1.offset().left;
         var y1 = $div1.offset().top;
@@ -69,6 +72,7 @@ jQuery.noConflict();
         }
     }
 
+    // player walking - changing leg positons
     var l_pos = 0; // leg_position
     var r_dir = 'right' // run_direction
 
@@ -116,9 +120,13 @@ jQuery.noConflict();
         return l_pos = l_pos + 1
     };
 
-
+    // player walking - arrow keys
     $(document).keydown(function(e) {      
         // e.preventDefault();
+        if ( gold_counter == 5 ) {
+	    $('.victory').show();
+            sound_victory.play();
+        }
         switch(e.which) {
             case 37: // left
                 $('#player').css({marginLeft: '-=15px'});
@@ -156,12 +164,14 @@ jQuery.noConflict();
         }
     })    
 
+    // document ready f-ions
     $(document).ready(function() {
         animateDiv();
         sound_jungle.play()
     });
 
 
+    // tric animation
     function goLeft(){
         // Get viewport dimensions (remove the dimension of the div)
         var h = $('#tric').offset().top - 50;
@@ -178,6 +188,8 @@ jQuery.noConflict();
         return [h,w];    
     };
 
+    var tric_pos = 0
+
     function animateDiv(){
         var left = goLeft();
         var right = goRight();
@@ -186,9 +198,16 @@ jQuery.noConflict();
         
         $('#tric').animate({ left: left[1] }, speed, function() {
             if ( $('#tric').offset().left > 0 ) {
+                if ( tric_pos % 2 == 0 ) {
+                    $('#tric').css("background-image", "url('/static/img/triceratops_left_2.png')");
+                } else {
+                    $('#tric').css("background-image", "url('/static/img/triceratops_left.png')");
+                }
+                tric_pos = tric_pos + 1
                 animateDiv();
+
             } else {
-                $('#tric').({ left: left[1] }, speed, function() {
+                $('#tric').animate({ left: left[1] }, speed, function() {
                     $('#tric').css("background-image", "url('/static/img/triceratops_right.png')");
                     animateRight();
                 });
@@ -204,7 +223,13 @@ jQuery.noConflict();
         
         $('#tric').animate({ left: right[1] }, speed, function() {
             // change hardcoded offset.left
-            if ( $('#tric').offset().left < 1800 ) {
+            if ( $('#tric').offset().left < 950 ) {
+                 if ( tric_pos % 2 == 0 ) {
+                    $('#tric').css("background-image", "url('/static/img/triceratops_right_2.png')");
+                } else {
+                    $('#tric').css("background-image", "url('/static/img/triceratops_right.png')");
+                }
+                tric_pos = tric_pos + 1
                 animateRight();
             } else {
                 $('#tric').css("background-image", "url('/static/img/triceratops_left.png')");
@@ -215,16 +240,7 @@ jQuery.noConflict();
 
 
 
-
-
-
-/*
-    dino_collision(player, tric);
-    if (collides == 1) {
-        $('#tric').stop();
-};
-*/
-
+    // npc animation speed control
     function calcSpeed(prev, next) {
     
         var x = Math.abs(prev[1] - next[1]);
@@ -232,12 +248,13 @@ jQuery.noConflict();
     
         var greatest = x > y ? x : y;
     
-        var speedModifier = 0.25;
+        var speedModifier = 0.2;
 
         var speed = Math.ceil(greatest/speedModifier);
 
         return speed;
 
     }
+
 
 }(jQuery));

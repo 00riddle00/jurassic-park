@@ -30,6 +30,28 @@ body {
     position: fixed;
 }
 
+.game-over {
+    display: none;
+    z-index: 2;
+    color: red;
+    font-size: 50px;
+    left: 360px;
+    top: 200px;
+    position: fixed;
+}
+
+.victory {
+    display: none;
+    z-index: 2;
+    color: white;
+    font-size: 50px;
+    left: 360px;
+    top: 200px;
+    position: fixed;
+}
+
+
+
 .c1 {
     top: 90px;
     left: 800px;
