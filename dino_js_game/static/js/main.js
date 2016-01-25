@@ -168,7 +168,7 @@ jQuery.noConflict();
         var w = $('#tric').offset().left - 50;
     
         return [h,w];    
-    }
+    };
 
     function goRight(){
         // Get viewport dimensions (remove the dimension of the div)
@@ -176,7 +176,7 @@ jQuery.noConflict();
         var w = $('#tric').offset().left + 50;
     
         return [h,w];    
-    }
+    };
 
     function animateDiv(){
         var left = goLeft();
