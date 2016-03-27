@@ -3,7 +3,7 @@ import os
 import sys
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dino_js_game.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "jurassic_park_game.settings")
 
     from django.core.management import execute_from_command_line
 
