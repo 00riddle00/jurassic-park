@@ -1,0 +1,136 @@
+body {
+    margin: 0 auto;
+}
+
+#gold-counter {
+    top: 10px;
+    left: 10px;
+    position: fixed;
+}
+
+#gold-counter #title {
+    float: left;
+    color: yellow;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+#gold-counter #number {
+    color: orange;
+    font-weight: bold;
+    float: right;
+    padding-left: 10px;
+}
+
+.coin {
+    border-radius: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: yellow;
+    position: fixed;
+}
+
+.game-over {
+    display: none;
+    z-index: 2;
+    color: red;
+    font-size: 50px;
+    left: 360px;
+    top: 200px;
+    position: fixed;
+}
+
+.victory {
+    display: none;
+    z-index: 2;
+    color: white;
+    font-size: 50px;
+    left: 360px;
+    top: 200px;
+    position: fixed;
+}
+
+
+
+.c1 {
+    top: 90px;
+    left: 800px;
+}
+
+.c2 {
+    top: 270px;
+    left: 200px;
+}
+
+.c3 {
+    top: 300px;
+    left: 1100px;
+}
+
+.c4 {
+    top: 600px;
+    left: 1200px;
+}
+
+.c5 {
+    top: 650px;
+    left: 400px;
+}
+
+#map {
+    width: 1920px;
+    height: 1080px;
+    background-color: blue;
+    background-image: url('/static/img/grass.png');
+    position: fixed;
+}
+
+#player {
+    background-image: url('/static/img/r_run_1.png');
+    height: 150px;
+    width: 105px;
+    background-repeat: no-repeat;
+    margin-top: 50px;
+    margin-left: 10px;
+}
+
+.npc {
+    background-repeat: no-repeat;
+    position: fixed;
+}
+
+.npc #tric {
+    background-image: url('/static/img/triceratops_left.png');
+    height: 65px;
+    width: 125px;
+    background-repeat: inherit;
+    position: inherit;
+    top: 300px;
+    left: 500px;
+}
+
+.npc #tric-greeting {
+    display: none;
+    top: 226px;
+    left: 534px;
+    width: 100px;
+    height: 50px;
+    background-repeat: inherit;
+    position: inherit;
+    background-color: white;
+    border-radius: 17px;
+    text-align: center;
+    line-height: 50px;
+    color: green;
+}
+
+.balloon {
+    display: inherit;
+    border-radius: 10px;
+    width: 12px;
+    height: 13px;
+    background-color: white;
+    position: fixed;
+    top: 284px;
+    left: 523px;
+}
