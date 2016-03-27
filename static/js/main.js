@@ -120,55 +120,9 @@ jQuery.noConflict();
         return l_pos = l_pos + 1
     };
 
-    // player walking - arrow keys
-    $(document).keydown(function(e) {      
-        // e.preventDefault();
-        if ( gold_counter == 5 ) {
-	    $('.victory').show();
-            sound_victory.play();
-        }
-        switch(e.which) {
-            case 37: // left
-                $('#player').css({marginLeft: '-=15px'});
-                change_legs_left()
-	        dino_collision(player, tric);
-                $('.coin').each(function () {
-                    coin_collision(player, $(this));
-                });
-                break    
-            case 38: // up
-                $('#player').css({marginTop: '-=15px'});
-                change_legs_up()
-	        dino_collision(player, tric);
-                $('.coin').each(function () {
-                    coin_collision(player, $(this));
-                });
-                break    
-            case 39: // right
-                $('#player').css({marginLeft: '+=15px'});
-                change_legs_right()
-	        dino_collision(player, tric);
-                $('.coin').each(function () {
-                    coin_collision(player, $(this));
-                });
-                break    
-            case 40: // down
-                $('#player').css({marginTop: '+=15px'});
-                change_legs_down()
-	        dino_collision(player, tric);
-                $('.coin').each(function () {
-                    coin_collision(player, $(this));
-                });
-                break    
-            default: return;
-        }
-    })    
 
-    // document ready f-ions
-    $(document).ready(function() {
-        animateDiv();
-        sound_jungle.play()
-    });
+
+
 
 
     // tric animation
@@ -176,7 +130,7 @@ jQuery.noConflict();
         // Get viewport dimensions (remove the dimension of the div)
         var h = $('#tric').offset().top - 50;
         var w = $('#tric').offset().left - 50;
-    
+
         return [h,w];    
     };
 
@@ -185,7 +139,7 @@ jQuery.noConflict();
         var h = $('#tric').offset().top - 50;
         var w = $('#tric').offset().left + 50;
     
-        return [h,w];    
+        return [h,w];
     };
 
     var tric_pos = 0
@@ -195,9 +149,9 @@ jQuery.noConflict();
         var right = goRight();
         var oldq = $('#tric').offset();
         var speed = calcSpeed([oldq.top, oldq.left], left);
-        
-        $('#tric').animate({ left: left[1] }, speed, function() {
-            if ( $('#tric').offset().left > 0 ) {
+
+        if ( $('#tric').offset().left > 0 ) {
+            $('#tric').animate({ left: left[1] }, speed, function() {
                 if ( tric_pos % 2 == 0 ) {
                     $('#tric').css("background-image", "url('/static/img/triceratops_left_2.png')");
                 } else {
@@ -205,10 +159,12 @@ jQuery.noConflict();
                 }
                 tric_pos = tric_pos + 1
                 animateDiv();
-            };
-        });
+            })
+        } else {
+            animateRight();
+        }
     };
-
+ 
 
     function animateRight(){
         var left = goLeft();
@@ -257,5 +213,57 @@ jQuery.noConflict();
         return speed;
 
     }
+
+
+    // document ready f-ions
+    $(document).ready(function() {
+        animateDiv();
+        sound_jungle.play()
+    });
+
+    // player walking - arrow keys
+    $(document).keydown(function(e) {
+        // e.preventDefault();
+        if ( gold_counter == 5 ) {
+	    $('.victory').show();
+            sound_victory.play();
+        }
+        switch(e.which) {
+            case 37: // left
+                $('#player').css({marginLeft: '-=15px'});
+                change_legs_left()
+	            dino_collision(player, tric);
+                $('.coin').each(function () {
+                    coin_collision(player, $(this));
+                });
+                break
+            case 38: // up
+                $('#player').css({marginTop: '-=15px'});
+                change_legs_up()
+	            dino_collision(player, tric);
+                $('.coin').each(function () {
+                    coin_collision(player, $(this));
+                });
+                break
+            case 39: // right
+                $('#player').css({marginLeft: '+=15px'});
+                change_legs_right()
+	            dino_collision(player, tric);
+                $('.coin').each(function () {
+                    coin_collision(player, $(this));
+                });
+                break
+            case 40: // down
+                $('#player').css({marginTop: '+=15px'});
+                change_legs_down()
+	            dino_collision(player, tric);
+                $('.coin').each(function () {
+                    coin_collision(player, $(this));
+                });
+                break
+            default: return;
+        }
+    })
+
 
 }(jQuery));
